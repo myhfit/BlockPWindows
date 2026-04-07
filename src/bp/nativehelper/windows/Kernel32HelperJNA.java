@@ -5,7 +5,7 @@ import com.sun.jna.win32.StdCallLibrary;
 
 public class Kernel32HelperJNA implements Kernel32Helper
 {
-	private static Kernel32 INST = Native.loadLibrary("kernel32", Kernel32.class);
+	private static Kernel32 INST = (Kernel32) Native.loadLibrary("kernel32", Kernel32.class);
 
 	public int setThreadExecutionState(int esFlags)
 	{

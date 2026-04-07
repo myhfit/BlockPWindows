@@ -8,7 +8,7 @@ import com.sun.jna.win32.StdCallLibrary;
 
 public class DwmapiHelperJNA implements DwmapiHelper
 {
-	private final static Dwmapi INST = Native.loadLibrary("dwmapi", Dwmapi.class);
+	private final static Dwmapi INST = (Dwmapi) Native.loadLibrary("dwmapi", Dwmapi.class);
 
 	public int dwmSetWindowAttribute(long hwnd, int dwAttribute, byte[] pvAttribute, int cbAttribute)
 	{
