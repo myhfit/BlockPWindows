@@ -6,6 +6,8 @@ import bp.nativehelper.BPNativeHelpers;
 import bp.nativehelper.windows.DwmapiHelper;
 import bp.nativehelper.windows.DwmapiHelperFFM;
 import bp.nativehelper.windows.DwmapiHelperJNA;
+import bp.nativehelper.windows.IphlpapiHelper;
+import bp.nativehelper.windows.IphlpapiHelperJNA;
 import bp.nativehelper.windows.Kernel32Helper;
 import bp.nativehelper.windows.Kernel32HelperFFM;
 import bp.nativehelper.windows.Kernel32HelperJNA;
@@ -17,7 +19,6 @@ import bp.os.monitor.BPOSMonitors;
 import bp.os.process.BPProcessHandler_Win;
 import bp.os.process.BPProcessHandlers;
 import bp.service.BPServiceWindowsUtil;
-import bp.util.ClassUtil;
 import bp.util.OSInfoHandlersWindows;
 import bp.util.SystemUtil;
 import bp.util.SystemUtil.SystemOS;
@@ -57,7 +58,7 @@ public class BPExtensionLoaderWindows implements BPExtensionLoader
 	public void preload()
 	{
 		BPNativeHelperFFM helperffm = BPNativeHelpers.getHelper(BPNativeHelperFFM.HELPER_FFM);
-		if (ClassUtil.getTClass("com.sun.jna.Native", ClassUtil.getExtensionClassLoader()) != null)
+		if (BPNativeHelpers.hasJNASupport())
 		{
 			SystemUtil.addSystemInfoHandler("OS_Windows", OSInfoHandlersWindows::getOSInfoWindows);
 			SystemUtil.addSystemInfoHandler("OS_Windows_User", OSInfoHandlersWindows::getOSInfoWindowsUser);
@@ -76,6 +77,7 @@ public class BPExtensionLoaderWindows implements BPExtensionLoader
 					helperjna.register(DwmapiHelper.HELPER_NAME_DWMAPI, new DwmapiHelperJNA());
 					helperjna.register(Kernel32Helper.HELPER_NAME_K32, new Kernel32HelperJNA());
 				}
+				helperjna.register(IphlpapiHelper.HELPER_NAME_IPHLPAPI, new IphlpapiHelperJNA());
 			}
 			(new BPServiceWindowsUtil()).register();
 		}

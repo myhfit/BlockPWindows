@@ -47,6 +47,6 @@ public class BPServiceWindowsUtil extends BPServiceFreeCall
 	public void setImmersiveDarkMode(long hwnd)
 	{
 		DwmapiHelper helper = BPNativeHelpers.getInterface(DwmapiHelper.HELPER_NAME_DWMAPI);
-		helper.dwmSetWindowAttribute(hwnd, 20, new byte[] { (byte) 1 }, 1);
+		helper.dwmSetWindowAttribute(hwnd, 20, new byte[] { 0, 0, 0, (byte) 1 }, 4);
 	}
 }

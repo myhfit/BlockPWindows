@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.sun.jna.Memory;
+import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
@@ -16,7 +17,7 @@ public interface Advapi32 extends StdCallLibrary
 {
 	boolean GetUserNameW(Pointer lpBuffer, Pointer pcbBuffer);
 
-	boolean OpenProcessToken(NativeLong ProcessHandle, int DesiredAccess, Pointer TokenHandle);
+	boolean OpenProcessToken(Pointer ProcessHandle, int DesiredAccess, Pointer TokenHandle);
 
 	public static class TOKEN_USER extends Structure
 	{
@@ -118,7 +119,7 @@ public interface Advapi32 extends StdCallLibrary
 
 		public PSIDByReference(PSID h)
 		{
-			super(Pointer.SIZE);
+			super(Native.POINTER_SIZE);
 			setValue(h);
 		}
 

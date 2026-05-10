@@ -62,12 +62,14 @@ public class OSInfoHandlersWindows extends OSInfoHandlers
 		{
 			Memory m = new Memory(8);
 			int TOKEN_QUERY = 0x008;
-			NativeLong hprocess = k32.GetCurrentProcess();
 			NativeLong htoken = null;
+			Pointer hprocess = k32.GetCurrentProcess();
 			try
 			{
-				aa.OpenProcessToken(k32.GetCurrentProcess(), TOKEN_QUERY, m);
+				aa.OpenProcessToken(hprocess, TOKEN_QUERY, m);
+
 				htoken = m.getNativeLong(0);
+				if (htoken.longValue() != 0)
 				{
 					IntByReference dwsize = new IntByReference(0);
 					aa.GetTokenInformation(htoken, 1, Pointer.NULL, 0, dwsize);
@@ -94,6 +96,7 @@ public class OSInfoHandlersWindows extends OSInfoHandlers
 					}
 				}
 
+				if (htoken.longValue() != 0)
 				{
 					IntByReference dwsize = new IntByReference(0);
 					aa.GetTokenInformation(htoken, 2, Pointer.NULL, 0, dwsize);
@@ -145,7 +148,7 @@ public class OSInfoHandlersWindows extends OSInfoHandlers
 				{
 					k32.CloseHandle(htoken);
 				}
-				k32.CloseHandle(hprocess);
+//				k32.CloseHandle(hprocess);
 			}
 		}
 		return sb.toString();

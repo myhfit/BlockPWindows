@@ -101,7 +101,7 @@ public interface Kernel32 extends StdCallLibrary
 
 	NativeLong OpenProcess(int dwDesiredAccess, boolean bInheritHandle, int dwProcessId);
 
-	NativeLong GetCurrentProcess();
+	Pointer GetCurrentProcess();
 
     Pointer LocalFree(Pointer hMem);
     
