@@ -9,6 +9,7 @@ import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
 
+import bp.typeext.KV.KVs;
 import bp.util.windows.Advapi32;
 import bp.util.windows.Advapi32.SID_AND_ATTRIBUTES;
 import bp.util.windows.Advapi32.TOKEN_GROUPS;
@@ -35,6 +36,11 @@ public class OSInfoHandlersWindows extends OSInfoHandlers
 			rc.put("Product_Type", osvi.wProductType);
 		}
 		return rc;
+	}
+
+	public final static KVs getOSInfoWindowsKVs()
+	{
+		return new KVs(getOSInfoWindows());
 	}
 
 	public final static String getOSInfoWindowsUser()
@@ -148,7 +154,7 @@ public class OSInfoHandlersWindows extends OSInfoHandlers
 				{
 					k32.CloseHandle(htoken);
 				}
-//				k32.CloseHandle(hprocess);
+				// k32.CloseHandle(hprocess);
 			}
 		}
 		return sb.toString();

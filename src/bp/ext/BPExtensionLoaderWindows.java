@@ -60,7 +60,7 @@ public class BPExtensionLoaderWindows implements BPExtensionLoader
 		BPNativeHelperFFM helperffm = BPNativeHelpers.getHelper(BPNativeHelperFFM.HELPER_FFM);
 		if (BPNativeHelpers.hasJNASupport())
 		{
-			SystemUtil.addSystemInfoHandler("OS_Windows", OSInfoHandlersWindows::getOSInfoWindows);
+			SystemUtil.addSystemInfoHandler("OS_Windows", OSInfoHandlersWindows::getOSInfoWindowsKVs);
 			SystemUtil.addSystemInfoHandler("OS_Windows_User", OSInfoHandlersWindows::getOSInfoWindowsUser);
 			BPOSHandlers.S_SIMPLERUN = BPOSHandlers_Win::runSimple;
 			BPOSHandlers.S_SIMPLESTART = BPOSHandlers_Win::startSimple;

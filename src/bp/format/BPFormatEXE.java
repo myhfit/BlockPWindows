@@ -1,6 +1,6 @@
 package bp.format;
 
-public class BPFormatEXE implements BPFormat
+public class BPFormatEXE extends BPFormatBase
 {
 	public final static String FORMAT_EXE = "EXE";
 

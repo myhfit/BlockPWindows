@@ -1,6 +1,6 @@
 package bp.format;
 
-public class BPFormatDLL implements BPFormat
+public class BPFormatDLL extends BPFormatBase
 {
 	public final static String FORMAT_DLL = "DLL";
 
